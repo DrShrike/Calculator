@@ -1,141 +1,67 @@
+<!DOCTYPE html>
 <html>
-  <head>
-    <style>
-     
-      input[type="text"] {
-        width: 200px;
-        height: 30px;
-        font-size: 16px;
-      }
-      input[type="button2"] {
-        background-color: #FF7F00;
-        border: 4px solid black;
-        color: black;
-        padding: 16px 32px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 16px;
-        margin: 4px 2px;
-        -webkit-transition-duration: 0.4s; /* Safari */
-        transition-duration: 0.4s;
-        cursor: pointer;
-      }
-
-      input[type="button2"]:hover {
-        background-color: #EF6F00;
+<head>
+  <style>
+    @font-face {
+      font-family: 'MyCustomFont';
+      src: url('mycustomfont.ttf') format('truetype');
+    }
+    body {
+      font-family: 'MyCustomFont', sans-serif;
+      color: #00FF00;
+    }
+    input[type="text"] {
+      width: 500px;
+      height: 50px;
+      font-size: 24px;
+      font-family: 'MyCustomFont', sans-serif;
+      color: #00FF00;
+      background-color:black;
       
-      }
-      input[type="button3"] {
-        background-color: #FFDF00;
-        border: 4px solid black;
-        color: black;
-        padding: 16px 32px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 16px;
-        margin: 4px 2px;
-        -webkit-transition-duration: 0.4s; /* Safari */
-        transition-duration: 0.4s;
-        cursor: pointer;
-      }
-
-      input[type="button3"]:hover {
-        background-color: #FFBF00;
-     
-      }
-      input[type="button4"] {
-        background-color: #00BF3F;
-        border: 4px solid black;
-        color: black;
-        padding: 16px 32px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 16px;
-        margin: 4px 2px;
-        -webkit-transition-duration: 0.4s; /* Safari */
-        transition-duration: 0.4s;
-        cursor: pointer;
-      }
-
-      input[type="button4"]:hover {
-        background-color: #00AF2F;
-      }
+    }
+    button {
+      font-size: 24px;
+      font-family: 'MyCustomFont', sans-serif;
+      color: #00FF00;
+      background-color:black;
       
-            input[type="button5"] {
-        background-color: #003FFF;
-        border: 4px solid black;
-        color: black;
-        padding: 16px 32px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 16px;
-        margin: 4px 2px;
-        -webkit-transition-duration: 0.4s; /* Safari */
-        transition-duration: 0.4s;
-        cursor: pointer;
-      }
-
-      input[type="button5"]:hover {
-        background-color: #002FDF;
-      }
-      
-
-      input[type="text"] {
-        background-color: #FFBFBF;
-        border: 4px solid black;
-        width: 985px;
-        height: 100px;
-        font-size: 90px;
-        color: black;
-      }
-    </style>
-  </head>
-  <body>
-    <form>
-      <input type="text" id="display" disabled>
-      <br>
-      <input type="button2" value="1" onclick="addToDisplay(1)" readonly>
-      <input type="button2" value="2" onclick="addToDisplay(2)" readonly>
-      <input type="button2" value="3" onclick="addToDisplay(3)" readonly>
-      <input type="button2" value="+" onclick="addToDisplay('+')" readonly>
-      <br>
-      <input type="button3" value="4" onclick="addToDisplay(4)" readonly>
-      <input type="button3" value="5" onclick="addToDisplay(5)" readonly>
-      <input type="button3" value="6" onclick="addToDisplay(6)" readonly>
-      <input type="button3" value="-" onclick="addToDisplay('-')" readonly>
-      <br>
-      <input type="button4" value="7" onclick="addToDisplay(7)" readonly>
-      <input type="button4" value="8" onclick="addToDisplay(8)" readonly>
-      <input type="button4" value="9" onclick="addToDisplay(9)" readonly>
-      <input type="button4" value="*" onclick="addToDisplay('*')" readonly>
-      <br>
-      <input type="button5" value="C" onclick="clearDisplay()" readonly>
-      <input type="button5" value="0" onclick="addToDisplay(0)" readonly>
-      <input type="button5" value="=" onclick="compute()">
-      <input type="button5" value="/" onclick="addToDisplay('/')" readonly>
-    </form>
-    <script>
-      function addToDisplay(val) {
-        document.getElementById('display').value += val;
-      }
-
-      function clearDisplay() {
-        document.getElementById('display').value = "";
-      }
-
-      function compute() {
-        try {
-          var result = eval(document.getElementById('display').value);
-          document.getElementById('display').value = result;
-        } catch(e) {
-          document.getElementById('display').value = "Error";
-        }
-      }
-    </script>
-  </body>
+    }
+  </style>
+  <title>AES Cipher</title>
+</head>
+<body>
+	<body style="background-color:black;">
+  <h1>AES Cipher</h1>
+  <p>This is a text encryption and decryption program, using the AES cipher. Simply input your text and decide on a key, and the program will encrypt it. Only someone with the key will be able to decode the message.</p>
+  <p>Enter a message:</p>
+  <form>
+    <input type="text" id="message">
+    <br>
+    <p>Enter the secret key:</p>
+    <input type="text" id="key">
+    <br><br>
+    <button type="button" onclick="encrypt()">Encrypt</button>
+    <button type="button" onclick="decrypt()">Decrypt</button>
+  </form>
+  <br>
+  <p>Result:</p>
+  <p id="output"></p>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
+  <script>
+    function encrypt() {
+      var message = document.getElementById("message").value;
+      var key = document.getElementById("key").value;
+      var encrypted = CryptoJS.AES.encrypt(message, key);
+      document.getElementById("output").innerHTML = encrypted;
+    }
+    
+    function decrypt() {
+      var message = document.getElementById("message").value;
+      var key = document.getElementById("key").value;
+      var decrypted = CryptoJS.AES.decrypt(message, key);
+      decrypted = decrypted.toString(CryptoJS.enc.Utf8);
+      document.getElementById("output").innerHTML = decrypted;
+    }
+  </script>
+</body>
 </html>
-

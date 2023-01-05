@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <!-- Hey! What are you doing in my shitty code! This code is for my eyes only!!! Not really, i barely know how to use html, and i took like half of this from reddit, and the other half took me a few grueling hours :P -->
 <head>
   <style>
@@ -10,25 +11,40 @@
     body {
       font-family: 'determination', sans-serif;
       color: white;
+      height: 120%;
+      overflow-y: hidden;
+    }
+    h1 {
+        font-size: 24px;
     }
     input[type="text"] {
       width: 500px;
-      height: 50px;
+      height: 45px;
       font-size: 24px;
       font-family: 'determination', sans-serif;
       color: white;
       background-color:black;
+      border: 4px solid white;
+      outline: none;
       
     }
+    
     button {
-      font-size: 24px;
-      font-family: 'determination', sans-serif;
-      color: white;
-      background-color:black;
-      
+  font-size: 24px;
+  font-family: 'determination', sans-serif;
+  color: white;
+  background-color:black;
+  border: 4px solid white;
+}
+
+button:hover {
+  background-color: #404040;
+}
+
     }
+    
   </style>
-  <title>AES Cipher</title>
+  
 </head>
 <body>
 	<body style="background-color:black;">
@@ -64,5 +80,14 @@
       document.getElementById("output").innerHTML = decrypted;
     }
   </script>
+  <style>
+  #animation {
+    position: relative;
+    top: -340px;
+    left: 600px;
+  }
+</style>
+
+<img id="animation" src="animation1.gif" width="240" height="300">
 </body>
 </html>
